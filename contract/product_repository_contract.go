@@ -11,6 +11,6 @@ type ProductRepositoryContract interface {
 	Save(ctx context.Context, tx *sql.Tx, product model.Product) model.Product
 	Update(ctx context.Context, tx *sql.Tx, product model.Product) model.Product
 	Delete(ctx context.Context, tx *sql.Tx, product model.Product)
-	Find(ctx context.Context, tx *sql.Tx, productId int) model.Product
+	Find(ctx context.Context, tx *sql.Tx, productId int) (model.Product, error)
 	FindAll(ctx context.Context, tx *sql.Tx) []model.Product
 }
