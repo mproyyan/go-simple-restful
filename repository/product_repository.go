@@ -31,10 +31,15 @@ func (pr *ProductRepository) Update(ctx context.Context, tx *sql.Tx, product mod
 	return product
 }
 
-func (pr *ProductRepository) Delete(ctx context.Context, tx *sql.Tx, product model.Product) {
+func (pr *ProductRepository) Delete(ctx context.Context, tx *sql.Tx, product model.Product) bool {
 	script := "DELETE FROM products WHERE id = ?"
 	_, err := tx.ExecContext(ctx, script, product.Id)
-	helper.CheckErr(err)
+
+	if err != nil {
+		return false
+	}
+
+	return true
 }
 
 func (pr *ProductRepository) Find(ctx context.Context, tx *sql.Tx, productId int) (model.Product, error) {
