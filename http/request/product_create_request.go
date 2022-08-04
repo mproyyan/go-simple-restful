@@ -1,5 +1,5 @@
 package request
 
 type ProductCreateRequest struct {
-	Name string
+	Name string `json:"name"`
 }

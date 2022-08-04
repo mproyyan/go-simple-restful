@@ -1,6 +1,6 @@
 package request
 
 type ProductUpdateRequest struct {
-	Id   int
-	Name string
+	Id   int    `json:"id"`
+	Name string `json:"name"`
 }
