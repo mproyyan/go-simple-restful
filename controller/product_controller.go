@@ -9,14 +9,13 @@ import (
 	"github.com/mproyyan/go-simple-restful/helper"
 	"github.com/mproyyan/go-simple-restful/http/request"
 	"github.com/mproyyan/go-simple-restful/http/response"
-	"github.com/mproyyan/go-simple-restful/service"
 )
 
 type ProductController struct {
-	ProductService service.ProductService
+	ProductService contract.ProductServiceContract
 }
 
-func NewProductController(ps service.ProductService) contract.ProductControllerContract {
+func NewProductController(ps contract.ProductServiceContract) contract.ProductControllerContract {
 	return &ProductController{
 		ProductService: ps,
 	}
