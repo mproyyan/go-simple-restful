@@ -5,11 +5,16 @@ import (
 	"database/sql"
 	"errors"
 
+	"github.com/mproyyan/go-simple-restful/contract"
 	"github.com/mproyyan/go-simple-restful/helper"
 	"github.com/mproyyan/go-simple-restful/model"
 )
 
 type ProductRepository struct {
+}
+
+func NewProductRepository() contract.ProductRepositoryContract {
+	return &ProductRepository{}
 }
 
 func (pr *ProductRepository) Save(ctx context.Context, tx *sql.Tx, product model.Product) model.Product {
