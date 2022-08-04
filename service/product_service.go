@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 
+	"github.com/mproyyan/go-simple-restful/contract"
 	"github.com/mproyyan/go-simple-restful/helper"
 	"github.com/mproyyan/go-simple-restful/http/request"
 	"github.com/mproyyan/go-simple-restful/http/response"
@@ -16,7 +17,7 @@ type ProductService struct {
 	DB                *sql.DB
 }
 
-func NewProductService(pr repository.ProductRepository, db *sql.DB) *ProductService {
+func NewProductService(pr repository.ProductRepository, db *sql.DB) contract.ProductServiceContract {
 	return &ProductService{
 		ProductRepository: pr,
 		DB:                db,
