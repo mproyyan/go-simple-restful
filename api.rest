@@ -1,0 +1,29 @@
+GET http://localhost:1307/api/products HTTP/1.1
+
+###
+
+POST http://localhost:1307/api/products HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+   "name": "Smartphone"
+}
+
+###
+
+GET http://localhost:1307/api/products/1 HTTP/1.1
+
+###
+
+PUT http://localhost:1307/api/products/1 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+   "name": "Portable Computer"
+}
+
+###
+
+DELETE http://localhost:1307/api/products/2 HTTP/1.1
