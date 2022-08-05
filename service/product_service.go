@@ -47,6 +47,9 @@ func (ps *ProductService) Update(ctx context.Context, request request.ProductUpd
 		panic(err)
 	}
 
+	// update name
+	data.Name = request.Name
+
 	product := ps.ProductRepository.Update(ctx, tx, data)
 
 	return helper.ProductResponse(product)
