@@ -6,6 +6,7 @@ import (
 
 	"github.com/go-playground/validator/v10"
 	"github.com/mproyyan/go-simple-restful/contract"
+	"github.com/mproyyan/go-simple-restful/exception"
 	"github.com/mproyyan/go-simple-restful/helper"
 	"github.com/mproyyan/go-simple-restful/http/request"
 	"github.com/mproyyan/go-simple-restful/http/response"
@@ -55,7 +56,7 @@ func (ps *ProductService) Update(ctx context.Context, request request.ProductUpd
 
 	data, err := ps.ProductRepository.Find(ctx, tx, request.Id)
 	if err != nil {
-		panic(err)
+		panic(exception.NewNotFoundError(err.Error()))
 	}
 
 	// update name
@@ -73,7 +74,7 @@ func (ps *ProductService) Delete(ctx context.Context, productId int) bool {
 
 	data, err := ps.ProductRepository.Find(ctx, tx, productId)
 	if err != nil {
-		panic(err)
+		panic(exception.NewNotFoundError(err.Error()))
 	}
 
 	result := ps.ProductRepository.Delete(ctx, tx, data)
@@ -87,7 +88,7 @@ func (ps *ProductService) Find(ctx context.Context, productId int) response.Prod
 
 	product, err := ps.ProductRepository.Find(ctx, tx, productId)
 	if err != nil {
-		panic(err)
+		panic(exception.NewNotFoundError(err.Error()))
 	}
 
 	return helper.ProductResponse(product)
