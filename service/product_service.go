@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 
+	"github.com/go-playground/validator/v10"
 	"github.com/mproyyan/go-simple-restful/contract"
 	"github.com/mproyyan/go-simple-restful/helper"
 	"github.com/mproyyan/go-simple-restful/http/request"
@@ -14,16 +15,22 @@ import (
 type ProductService struct {
 	ProductRepository contract.ProductRepositoryContract
 	DB                *sql.DB
+	Validate          *validator.Validate
 }
 
-func NewProductService(pr contract.ProductRepositoryContract, db *sql.DB) contract.ProductServiceContract {
+func NewProductService(pr contract.ProductRepositoryContract, db *sql.DB, validator *validator.Validate) contract.ProductServiceContract {
 	return &ProductService{
 		ProductRepository: pr,
 		DB:                db,
+		Validate:          validator,
 	}
 }
 
 func (ps *ProductService) Create(ctx context.Context, request request.ProductCreateRequest) response.ProductResponse {
+	// validate request
+	validationErr := ps.Validate.Struct(request)
+	helper.CheckErr(validationErr)
+
 	tx, err := ps.DB.Begin()
 	helper.CheckErr(err)
 	defer helper.CommitOrRollback(tx)
@@ -38,6 +45,10 @@ func (ps *ProductService) Create(ctx context.Context, request request.ProductCre
 }
 
 func (ps *ProductService) Update(ctx context.Context, request request.ProductUpdateRequest) response.ProductResponse {
+	// validate request
+	validationErr := ps.Validate.Struct(request)
+	helper.CheckErr(validationErr)
+
 	tx, err := ps.DB.Begin()
 	helper.CheckErr(err)
 	defer helper.CommitOrRollback(tx)

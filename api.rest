@@ -7,7 +7,17 @@ Content-Type: application/json
 Accept: application/json
 
 {
-   "name": "Smartphone"
+   "name": "Kaos"
+}
+
+###
+# create validation error
+POST http://localhost:1307/api/products HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+   "name": ""
 }
 
 ###
@@ -22,6 +32,17 @@ Accept: application/json
 
 {
    "name": "Portable Computer"
+}
+
+###
+
+# update validation error
+PUT http://localhost:1307/api/products/1 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+   "name": ""
 }
 
 ###
