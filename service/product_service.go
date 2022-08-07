@@ -19,7 +19,7 @@ type ProductService struct {
 	Validate          *validator.Validate
 }
 
-func NewProductService(pr contract.ProductRepositoryContract, db *sql.DB, validator *validator.Validate) contract.ProductServiceContract {
+func NewProductService(pr contract.ProductRepositoryContract, db *sql.DB, validator *validator.Validate) *ProductService {
 	return &ProductService{
 		ProductRepository: pr,
 		DB:                db,

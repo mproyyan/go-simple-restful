@@ -15,7 +15,7 @@ type ProductController struct {
 	ProductService contract.ProductServiceContract
 }
 
-func NewProductController(ps contract.ProductServiceContract) contract.ProductControllerContract {
+func NewProductController(ps contract.ProductServiceContract) *ProductController {
 	return &ProductController{
 		ProductService: ps,
 	}

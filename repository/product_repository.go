@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"errors"
 
-	"github.com/mproyyan/go-simple-restful/contract"
 	"github.com/mproyyan/go-simple-restful/helper"
 	"github.com/mproyyan/go-simple-restful/model"
 )
@@ -13,7 +12,7 @@ import (
 type ProductRepository struct {
 }
 
-func NewProductRepository() contract.ProductRepositoryContract {
+func NewProductRepository() *ProductRepository {
 	return &ProductRepository{}
 }
 
